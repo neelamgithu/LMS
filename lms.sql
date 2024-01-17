@@ -1,0 +1,423 @@
+SELECT * FROM lms.app_parameters;
+use lms;
+CREATE TABLE User_Details  (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    contact_number VARCHAR(15),
+    verified varchar(30),
+    creator_stamp TIMESTAMP,
+    creator_user VARCHAR(50)
+);
+
+INSERT INTO User_Details (email, first_name, last_name, Password, contact_number, verified, creator_stamp, creator_user)
+VALUES 
+('John@example.com', 'John', 'Doe', 'password1', '1234567890', 'Pending', NOW(), 'admin'),
+('Jane@example.com', 'Jane', 'Smith', 'password2', '9876543210', 'Pending', NOW(), 'admin'),
+('Bob@example.com', 'Bob', 'Johnson', 'password3', '5555555555', 'Accepeted', NOW(), 'admin'),
+('Alice@example.com', 'Alice', 'Johnson', 'password4', NULL, 'Accepeted', NOW(), 'admin'),
+('Charlie@example.com', 'Charlie', 'Brown', 'password5', '1111111111', 'Pending', NOW(), 'admin'),
+('Eva@example.com', 'Eva', 'White', 'password6', '9998887777', 'Rejected', NOW(), 'admin'),
+('David@example.com', 'David', 'Miller', 'password7', '3333333333', 'Accepeted', NOW(), 'admin'),
+('Grace@example.com', 'Grace', 'Williams', 'password8', '4444444444', 'Accepeted', NOW(), 'admin'),
+('Tom@example.com', 'Tom', 'Davis', 'password9', '6666666666', 'Rejected', NOW(), 'admin'),
+('Sophia@example.com', 'Sophia', 'Clark', 'password10', '7777777777', 'Accepeted', NOW(), 'admin'),
+('Henry@example.com', 'Henry', 'Smith', 'password11', '8888888888', 'Accepeted', NOW(), 'admin'),
+('Olivia@example.com', 'Olivia', 'Brown', 'password12', '2222222222', 'Rejected', NOW(), 'admin'),
+('Liam@example.com', 'Liam', 'Johnson', 'password13', NULL, 'Pending', NOW(), 'admin'),
+('Ava@example.com', 'Ava', 'Jones', 'password14', '1231231234', 'Accepeted', NOW(), 'admin'),
+('Mia@example.com', 'Mia', 'Davis', 'password15', '9876543210', 'Pending', NOW(), 'admin');
+select * from user_details; 
+-- Hired candidate
+CREATE TABLE Hired_Candidate (
+	Id INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    MiddleName VARCHAR(50),
+    LastName VARCHAR(50) NOT NULL,
+    EmailId VARCHAR(100) NOT NULL,
+    HiredCity VARCHAR(50),
+    Degree VARCHAR(50),
+    HiredDate DATE,
+    MobileNumber VARCHAR(15),
+    PermanentPincode VARCHAR(10),
+    HiredLab VARCHAR(50),
+    Attitude VARCHAR(255),
+    CommunicationRemark VARCHAR(255),
+    KnowledgeRemark VARCHAR(255),
+    AggregateRemark VARCHAR(255),
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser  INT,
+    FOREIGN KEY (CreatorUser) REFERENCES user_details(Id));
+    INSERT INTO Hired_Candidate (FirstName, MiddleName, LastName, EmailId, HiredCity, Degree, HiredDate, MobileNumber, PermanentPincode, HiredLab, Attitude, CommunicationRemark, KnowledgeRemark, AggregateRemark, Status, CreatorStamp,CreatorUser)
+VALUES
+ ('John','Tom', 'Doe','john@email.com', 'Pune', 'BE', '2024-01-01', '1234567890', '12345', 'Lab1', 'Positive', 'Good', 'Excellent', 'Outstanding', 'Active',NOW(), 1),
+('Jane','Bob', 'Smith','jane@email.com', 'Mumbai', 'ME', '2024-01-02', '9876543210', '54321', 'Lab2', 'Positive', 'Excellent', 'Good', 'Outstanding', 'Active',NOW(), 2),
+( 'Bob','xyz', 'Johnson','Bob@example.com', 'Benglor', 'BE', '2023-11-01', '5555555555', '54311', 'Lab3', 'Positive', 'Good', 'Excellent', 'Good', 'Active',NOW(), 3),
+( 'Alice','pqrs', 'Johnson','Alice@example.com', 'Mumbai', 'MCA', '2023-12-11',NUll, '56311', 'Lab1', 'Nutral', 'Excellent', 'Good', 'Good', 'InActive',NOW(), 4),
+( 'Charlie','black', 'Brown', 'Charlie@example.com', 'Pune', 'MCA', '2023-12-19','1111111111', '44311', 'Lab2', 'Negative', 'Good', 'Good', 'Good', 'InActive',NOW(), 5),
+( 'Eva','Gray', 'White','Eva@example.com','Benglor','ME', '2024-1-12', '9998887777', '44312', 'Lab3', 'Positive', 'Excellent', 'Excellent', 'Excellent', 'Active',NOW(), 6),
+( 'David','Roy', 'Miller','David@example.com', 'Mumbai','BE', '2023-5-01','3333333333',  '44333', 'Lab1', 'Positive', 'Excellent', 'Excellent', 'Outstanding', 'Active',NOW(), 7),
+('Grace','Dum', 'Williams','Grace@example.com','Benglor','BE','2023-8-01', '4444444444', '47833', 'Lab2', 'Positive', 'Excellent', 'Excellent', 'Outstanding', 'Active',NOW(), 8),
+('Tom','Lean','Davis','Tom@example.com','Pune','BE','2023-10-01','6666666666', '41233', 'Lab3', 'Positive', 'Good', 'Excellent', 'Good', 'InActive',NOW(), 9),
+('Sophia','Alean','Clark','Sophia@example.com','Pune', 'BE', '2023-07-01', '7777777777' , '13345', 'Lab1', 'Positive', 'Good', 'Excellent', 'Outstanding', 'Active',NOW(), 10);
+select * from Hired_Candidate; 
+CREATE TABLE Fellowship_Candidate (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CIC_ID VARCHAR(20),
+    FirstName VARCHAR(50) NOT NULL,
+    MiddleName VARCHAR(50),
+    LastName VARCHAR(50) NOT NULL,
+    EmailId VARCHAR(100) NOT NULL,
+    HiredCity VARCHAR(50),
+    Degree VARCHAR(50),
+    HiredDate DATE,
+    MobileNumber VARCHAR(15),
+    PermanentPincode VARCHAR(10),
+    HiredLab VARCHAR(50),
+    Attitude VARCHAR(255),
+    CommunicationRemark VARCHAR(255),
+    KnowledgeRemark VARCHAR(255),
+    AggregateRemark VARCHAR(255),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    BirthDate DATE,
+    IsBirthDateVerified BOOLEAN,
+    ParentName VARCHAR(100),
+    ParentOccupation VARCHAR(100),
+    ParentsMobileNumber VARCHAR(15),
+    ParentsAnnualSalary DECIMAL(10,2),
+    LocalAddress VARCHAR(255),
+    PermanentAddress VARCHAR(255),
+    PhotoPath VARCHAR(255),
+    JoiningDate DATE,
+    CandidateStatus VARCHAR(20),
+    PersonalInformation TEXT,
+    BankInformation TEXT,
+    EducationalInformation TEXT,
+    DocumentStatus VARCHAR(20),
+    Remark VARCHAR(255),
+    FOREIGN KEY (ID) REFERENCES user_details(ID));
+    INSERT INTO Fellowship_Candidate (CIC_ID, FirstName, MiddleName, LastName, EmailId, HiredCity, Degree, HiredDate, MobileNumber, PermanentPincode, HiredLab, Attitude, CommunicationRemark, KnowledgeRemark, AggregateRemark, CreatorUser, BirthDate, IsBirthDateVerified, ParentName, ParentOccupation, ParentsMobileNumber, ParentsAnnualSalary, LocalAddress, PermanentAddress, PhotoPath, JoiningDate, CandidateStatus, PersonalInformation, BankInformation, EducationalInformation, DocumentStatus, Remark)
+VALUES
+    ('CIC032022-11333','John','Tom', 'Doe','john@email.com', 'Pune', 'BE', '2024-01-01', '1234567890', '12345','Lab1', 'Positive', 'Good', 'Excellent', 'Outstanding', 1, '1990-01-01', true, 'John Doe Sr.', 'Engineer', '9876543210', 75000.00, 'LocalAddress1', 'PermanentAddress1', '/photos/john_doe.jpg', '2024-01-15', 'Active', 'Personal info 1', 'Bank info 1', 'Education info 1', 'Verified', 'No remarks'),
+    ('CIC032021-11333','Jane','Bob', 'Smith','jane@email.com', 'Mumbai', 'ME', '2024-01-02', '9876543210', '54321', 'Lab2', 'Positive', 'Excellent', 'Good', 'Outstanding',2 ,'1991-11-01', true, 'Smith Doe Sr.', 'Engineer', '9876588210', 65000.00, 'LocalAddress2', 'PermanentAddress2', '/photos/jane_Smith.jpg', '2024-01-14', 'Active', 'Personal info 2', 'Bank info 2', 'Education info 2', 'Verified', 'No remarks'),
+	('CIC034021-11333','Bob','xyz', 'Johnson','Bob@example.com', 'Benglor', 'BE', '2023-11-01', '5555555555', '54311', 'Lab3', 'Positive', 'Good', 'Excellent', 'Good', 3,'1992-12-01', true, 'Aline Doe Sr.', 'Doctor', '963588210', 65050.00, 'LocalAddress3', 'PermanentAddress3', '/photos/Bob_jhonson.jpg', '2024-01-13', 'Active', 'Personal info 3', 'Bank info 3', 'Education info 3', 'Verified', 'No remarks'),
+	('CIC037021-11333','Alice','pqrs', 'Johnson','Alice@example.com', 'Mumbai', 'MCA', '2023-12-11',NUll, '56311', 'Lab1', 'Nutral', 'Excellent', 'Good', 'Good', 4,'1993-10-01', true, ' bob Doe Sr.', 'Doctor', '963598710', 45000.00, 'LocalAddress4', 'PermanentAddress4', '/photos/Alice_jhonson.jpg', '2024-02-13', 'InActive', 'Personal info 4', 'Bank info 4', 'Education info 4', 'Verified', 'No remarks'),
+    ('CIC037021-11333','Charlie','black','Brown','Charlie@example.com', 'Pune', 'MCA', '2023-12-19','1111111111', '44311', 'Lab2', 'Negative', 'Good', 'Good', 'Good', 5,'1994-08-01', true, ' Charlie Doe Sr.', 'carpenter', '963522710', 50000.00, 'LocalAddress5', 'PermanentAddress5', '/photos/Alice_jhonson.jpg', '2024-02-13', 'InActive', 'Personal info 5', 'Bank info 5', 'Education info 5', 'Verified', 'No remarks');
+
+CREATE TABLE Candidate_Bank_Information (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CandidateId INT,
+    Name VARCHAR(100) NOT NULL,
+    AccountNumber VARCHAR(20) NOT NULL,
+    IsAccountNumberVerified BOOLEAN,
+    IfscCode VARCHAR(15) NOT NULL,
+    IsIfscCodeVerified BOOLEAN,
+    PanNumber VARCHAR(10) NOT NULL,
+    IsPanNumberVerified BOOLEAN,
+    AadhaarNumber VARCHAR(12) NOT NULL,
+    IsAadhaarNumberVerified BOOLEAN,
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (CandidateId) REFERENCES user_details(Id));
+    INSERT INTO Candidate_Bank_Information (CandidateId, Name, AccountNumber, IsAccountNumberVerified, IfscCode, IsIfscCodeVerified,
+ PanNumber, IsPanNumberVerified, AadhaarNumber, IsAadhaarNumberVerified,CreatorStamp, CreatorUser)
+VALUES
+    (1, 'John Doe', '123456789012', true, 'ABC1234567', true, 'ABCDE1234F', true, '123456789012', true,now(), 1),
+	(2, 'Jane Smith', '102345678912', true, 'ABC1234567', true, 'ABCGE1234F', true, '123456789013', true,now(), 2),
+	(3, 'Bob Johnson', '12345789012', true, 'ABC1234568', true, 'ABCSE1234F', true, '123456789014', true,now(), 3),
+	(4, 'Alice Johnson', '123789789012', true, 'ABC1235467', true, 'BBCDE1234F', true, '123456789015', true,now(), 4),
+	(5, 'Charlie Brown', '123741789012', true, 'ABC1243569', true, 'EBCDE1234F', true, '123456789016', true,now(), 5),
+	(6, 'Eva White', '123456774512', true, 'ABC1234560', true, 'ABCDK1234F', true, '123456789017', true,now(), 6),
+    (7, 'David Miller', '147456789012', true, 'ABC1234561', true, 'AUCDE1234F', true, '123456789018', true,now(), 7),
+    (8, 'Grace Williams', '785654321098', true, 'XYZ9876543', true, 'MYZAB5678P', true, '987654321019', true, now(),8),
+	(9, 'Tom Davis', '123456748512', true, 'ABC1234562', true, 'ABCIE1234F', true, '123456789010', true,now(), 9),
+	(10, 'Sophia Clark', '123785789012', true, 'ABC1234563', true, 'OBCDE1234F', true, '123456789000', true,now(), 10),
+	(11, 'Henry Smith', '204456789012', true, 'ABC1234564', true, 'APCDE1234F', true, '123456789010', true,now(), 11),
+	(12, 'Olivia Brown', '178956789012', true, 'ABC1234565', true, 'EBCDE1234F', true, '123456789020', true,now(), 12),
+	(13, 'Liam Johnson', '123456789012', true, 'ABC1234566', true, 'SBCDE1234F', true, '123456789030', true,now(), 13),
+	(14, 'Ava Jones', '123456789012', true, 'ABC1234544', true, 'ABCZE1234F', true, '123456789040', true,now(), 14),
+	(15, 'Mia Davis', '123456789012', true, 'ABC1234533', true, 'ABCRE1234F', true, '123456789050', true,now(), 15);
+          
+CREATE TABLE Candidate_Qualification (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CandidateId INT,
+    Diploma VARCHAR(50) NOT NULL,
+    DegreeName VARCHAR(100) NOT NULL,
+    IsDegreeNameVerified BOOLEAN,
+    EmployeeDiscipline VARCHAR(50),
+    IsEmployeeDisciplineVerified BOOLEAN,
+    PassingYear INT,
+    IsPassingYearVerified BOOLEAN,
+    AggregatePercentage DECIMAL(5, 2),
+    IsAggregatePercentageVerified BOOLEAN,
+    FinalYearPercentage DECIMAL(5, 2),
+    IsFinalYearPercentageVerified BOOLEAN,
+    TrainingInstitute VARCHAR(100),
+    IsTrainingInstituteVerified BOOLEAN,
+    TrainingDurationMonths INT,
+    IsTrainingDurationMonthsVerified BOOLEAN,
+    OtherTraining VARCHAR(255),
+    IsOtherTrainingVerified BOOLEAN,
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (CandidateId) REFERENCES user_details(Id)
+);INSERT INTO Candidate_Qualification (CandidateId, Diploma, DegreeName, IsDegreeNameVerified, EmployeeDiscipline, 
+IsEmployeeDisciplineVerified, PassingYear, IsPassingYearVerified, AggregatePercentage, IsAggregatePercentageVerified, 
+FinalYearPercentage, IsFinalYearPercentageVerified, TrainingInstitute, IsTrainingInstituteVerified, 
+TrainingDurationMonths, IsTrainingDurationMonthsVerified, OtherTraining, IsOtherTrainingVerified, CreatorStamp,CreatorUser)
+VALUES
+    (1, 'Diploma in Computer Science', 'Bachelor in Computer Science', true, 'Computer Science', true, 2018, true, 75.5, true, 78.2, true, 'Tech Institute', true, 12, true, 'Java Programming Certification', true,Now(), 1),
+    (2, 'Diploma in Mechnical', 'Masters of Computer Science', true, 'Computer Science', true, 2016, true, 80.0, true, 85.5, true, 'Tech School', true, 24, true, 'Python Programming Certification ', true,Now(), 2),
+    (3, 'Diploma in Electrical ','Bachelor in Electrical', true, 'Electrical Engineering', true, 2017, true, 78.2, true, 82.0, true, 'Engineering College', true, 18, true, 'PLC Programming Certification', true,Now(), 3),
+    (4, 'Diploma in computer Science', 'Masters of Computer Application', true, 'Computer', true, 2019, true, 89.5, true, 91.0, true, 'Cyber School', true, 36, true, 'CCNA', true,Now(), 4),
+    (5, 'Diploma in Computer Applications', 'Master of Science in Computer Applications', true, 'Computer Applications', true, 2016, true, 70.0, true, 75.5, true, 'Techno College', true, 15, true, 'Python Programming Certification', true,Now(), 5),
+	(6, 'Diploma in IT', 'Masters of IT', true, 'IT', true, 2016, true, 80.0, true, 85.5, true, 'DKTE ', true, 24, true, 'C++ Programming Certification ', true,Now(), 6),
+    (7, 'Diploma in IT', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2017, true, 75.0, true, 78.2, true, 'Arya Institute', true, 12, true, 'C Certification', true,Now(), 7),
+    (8, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2020, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(), 8),
+	(9, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2021, true, 75.5, true, 78.2, true, 'Morden Institute', true, 12, true, 'CCNP', true,Now(), 9),
+    (10, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2020, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(), 10),
+    (11, 'Diploma in IT', 'Bachelor  in IT', true, ' Inormation Technology', true, 2020, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(),11),
+    (12, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2016, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(), 12),
+    (13, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2020, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(), 13),
+    (14, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2020, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(), 14),
+    (15, 'Diploma in Computer Science', 'Bachelor  in Computer Science', true, 'Computer Science', true, 2021, true, 75.5, true, 78.2, true, 'SIT Institute', true, 12, true, 'CCNP', true,Now(), 15);
+
+
+
+
+CREATE TABLE Candidate_Documents (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CandidateId INT,
+    DocType VARCHAR(50) NOT NULL,
+    DocPath VARCHAR(255),
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (CandidateId) REFERENCES user_details(Id)
+);
+INSERT INTO Candidate_Documents (CandidateId, DocType, DocPath, Status,CreatorStamp, CreatorUser)
+VALUES 
+(1, 'Certificate', '/documents/john_doe.pdf', 'Received',now(), 1),
+(2, 'Adharcard', '/documents/Jane Smith.pdf', 'Received',now(), 2),
+(3, 'Pan_Card', '/documents/Bob Johnson.pdf', 'Received',now(), 3),
+(4, 'Certificate', null, 'Pending',now(), 4),
+(5, 'Adharcard', '/documents/Charlie Brown.pdf', 'Receiced',now(), 5),
+(6, 'Pan_card', '/documents/Eva White.pdf', 'Received',now(), 6),
+(7, 'Certificate', '/documents/David Miller.pdf', 'Received',now(), 7),
+(8, 'Adharcard', '/documents/Grace Williams.pdf', 'Received',now(), 8),
+(9, 'Pan_Card', '/documents/Tom Davis.pdf', 'Received',now(), 9),
+(10, 'Certificate', '/documents/Sophia Clark.pdf', 'Received',now(), 10),
+(11, 'Adharcard', null, 'Pending',now(), 11),
+(12, 'panvcard', '/documents/Olivia Brown.pdf', 'Received',now(), 12),
+(13, 'Certificate', '/documents/Liam Johnson.pdf', 'Received',now(), 13),
+(14, 'Adharcard', '/documents/Ava Jones.pdf', 'Received',now(), 14),
+(15, 'Pan_card', '/documents/ Mia Davis.pdf', 'Received',now(), 15);
+
+
+
+
+CREATE TABLE Company (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Address VARCHAR(255),
+    Location VARCHAR(50),
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT
+);
+INSERT INTO Company (Name, Address, Location, Status, CreatorUser)
+VALUES
+    ('ABC Corp', '123 Main Street', 'City1', 'Active', 1),
+    ('XYZ Ltd', '456 Oak Avenue', 'City2', 'Active', 2),
+    ('Tech Innovators', '789 Maple Lane', 'City3', 'Active', 3),
+    ('Global Solutions', '101 Pine Road', 'City4', 'Active', 4),
+    ('Dynamic Enterprises', '202 Elm Street', 'City5', 'Active', 5),
+    ('Innovate Tech', '303 Cedar Avenue', 'City6', 'Active', 1),
+    ('Swift Solutions', '404 Birch Lane', 'City7', 'Active', 2),
+    ('Pinnacle Systems', '505 Walnut Road', 'City8', 'Active', 3),
+    ('FutureTech Inc', '606 Spruce Lane', 'City9', 'Active', 4),
+    ('Eagle Software', '707 Fir Street', 'City10', 'Active', 5);
+
+
+CREATE TABLE Tech_Stack (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    TechName VARCHAR(50) NOT NULL,
+    ImagePath VARCHAR(255),
+    Framework VARCHAR(50),
+    CurrentStatus VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT
+);
+INSERT INTO Tech_Stack (TechName, ImagePath, Framework, CurrentStatus, CreatorUser)
+VALUES
+    ('Java', '/images/java_logo.png', 'Spring Boot', 'Active', 1),
+    ('JavaScript', '/images/javascript_logo.png', 'React', 'Active', 2),
+    ('Python', '/images/python_logo.png', 'Django', 'Active', 3),
+    ('C#', '/images/csharp_logo.png', 'ASP.NET Core', 'Active', 4),
+    ('Ruby', '/images/ruby_logo.png', 'Ruby on Rails', 'Active', 5),
+    ('PHP', '/images/php_logo.png', 'Laravel', 'Active', 1),
+    ('Swift', '/images/swift_logo.png', 'iOS', 'Active', 2),
+    ('Kotlin', '/images/kotlin_logo.png', 'Android', 'Active', 3),
+    ('Node.js', '/images/nodejs_logo.png', 'Express.js', 'Active', 4),
+    ('Go', '/images/go_logo.png', 'Gin', 'Active', 5);
+CREATE TABLE Tech_Type (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    TypeName VARCHAR(50) NOT NULL,
+    CurrentStatus VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT
+);
+INSERT INTO Tech_Type (TypeName, CurrentStatus, CreatorUser)
+VALUES
+    ('Programming Language', 'Active', 1),
+    ('Front-end Framework', 'Active', 2),
+    ('Back-end Framework', 'Active', 3),
+    ('Mobile App Development', 'Active', 4),
+    ('Database Management System', 'Active', 5),
+    ('Web Development', 'Active', 1),
+    ('Mobile Development', 'Active', 2),
+    ('Server-side Scripting Language', 'Active', 3),
+    ('Web Framework', 'Active', 4),
+    ('Cloud Computing', 'Active', 5);
+CREATE TABLE Maker_Program (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    ProgramName VARCHAR(100) NOT NULL,
+    ProgramType VARCHAR(50),
+    ProgramLink VARCHAR(255),
+    TechStackId INT,
+    TechTypeId INT,
+    IsProgramApproved BOOLEAN,
+    Description TEXT,
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+   FOREIGN KEY (TechStackID) REFERENCES Tech_Stack(Id),
+   FOREIGN KEY (TechTypeId) REFERENCES Tech_Type(Id)
+);INSERT INTO Maker_Program (ProgramName, ProgramType, ProgramLink, TechStackId, TechTypeId, IsProgramApproved, Description, Status, CreatorUser)
+VALUES
+    ('Java Basics Program', 'Tutorial', '/programs/java_basics', 1, 1, true, 'Learn the fundamentals of Java programming language.', 'Active', 1),
+    ('Java_Full_Stack+SpringBoot+Angular', 'Full Stack', '/programs/Full_Stack', 6, 7, true, 'Learning java ,angular and springboot', 'Active', 2),
+    ('Java_Full_Stack+Hibernate+Angular', 'Full Stack', '/programs/Hibernater', 3, 3, true, 'Master Python web development with Django framework.', 'Active', 3),
+    ('React Js', 'Front End', '/programs/Frontend', 4,2, true, 'Lerning React for front development', 'Active', 4),
+    ('SpringBoot', 'Backend', '/programs/Backend', 1, 3, true, 'Lerning Spring Boot for backend development.', 'Active', 5);
+CREATE TABLE App_Parameters(
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    KeyType VARCHAR(50) NOT NULL,
+    KeyValue VARCHAR(50) NOT NULL,
+    KeyText TEXT,
+    CurrentStatus VARCHAR(20),
+    LastUpdateUser INT,
+    LastUpdateStamp TIMESTAMP,
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    SeqNum INT
+);
+INSERT INTO App_Parameters (KeyType, KeyValue, KeyText, CurrentStatus, LastUpdateUser, LastUpdateStamp, CreatorUser, SeqNum)
+VALUES
+    ('DOC_STATUS', 'PND', 'Pending', 'Active', 1, NOW(), 1, 1),
+    ('DOC_STATUS', 'RCEVD', 'Received', 'Active', 2, NOW(), 1, 1),
+    ('CUR_STATUS', 'PND', 'Pending', 'Active', 3, NOW(), 3, 3);
+   -- ('Appearance', 'ThemeColor', '#3498db', 'Active', 4, NOW(), 4, 4),
+    -- ('Notification', 'EmailNotifications', 'Enabled', 'Active', 5, NOW(), 5, 5);
+CREATE TABLE Lab (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    Location VARCHAR(50),
+    Address VARCHAR(255),
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT
+);
+CREATE TABLE Mentor (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Name VARCHAR(100) NOT NULL,
+    MentorType VARCHAR(50),
+    LabId INT,
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (LabId) REFERENCES Lab(Id)
+);
+CREATE TABLE MentorIdeationMap (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    ParentMentorId INT,
+    MentorId INT,
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (ParentMentorId) REFERENCES Mentor(Id),
+    FOREIGN KEY (MentorId) REFERENCES Mentor(Id)
+);
+CREATE TABLE MentorTechStack (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    MentorId INT,
+    TechStackId INT,
+    Status VARCHAR(20),
+    CreatorStamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (MentorId) REFERENCES Mentor(Id),
+    FOREIGN KEY (TechStackId) REFERENCES Tech_Stack(Id)
+);
+CREATE TABLE Lab_Threshold (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    LabId INT,
+    LabCapacity INT,
+    LeadThreshold INT,
+    IdeationEnggThreshold INT,
+    BuddyEnggThreshold INT,
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (LabId) REFERENCES Lab(Id)
+);
+CREATE TABLE Company_Requirement (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    CompanyId INT,
+    RequestedMonth DATE,
+    City VARCHAR(50),
+    IsDocVerification BOOLEAN,
+    RequirementDocPath VARCHAR(255),
+    NumberOfEngineers INT,
+    TechStackId INT,
+    TechTypeId INT,
+    MakerProgramId INT,
+    LeadId INT,
+    IdeationEnggId INT,
+    BuddyEnggId INT,
+    SpecialRemark TEXT,
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (CompanyId) REFERENCES Company(Id),
+    FOREIGN KEY (TechStackId) REFERENCES Tech_Stack(Id),
+    FOREIGN KEY (TechTypeId) REFERENCES tech_type(Id),
+    FOREIGN KEY (MakerProgramId) REFERENCES maker_program(Id),
+    FOREIGN KEY (LeadId) REFERENCES Mentor(Id),
+    FOREIGN KEY (IdeationEnggId) REFERENCES Mentor(Id),
+    FOREIGN KEY (BuddyEnggId) REFERENCES Mentor(Id)
+);
+CREATE TABLE Candidate_Stack_Assignment (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    RequirementId INT,
+    CandidateId INT,
+    AssignDate DATE,
+    CompleteDate DATE,
+    Status VARCHAR(20),
+    CreatorStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CreatorUser INT,
+    FOREIGN KEY (RequirementId) REFERENCES company_requirement (Id),
+    FOREIGN KEY (CandidateId) REFERENCES Fellowship_Candidate (Id)
+);
+
+
+
+
+
+
+
+
+
